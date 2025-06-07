@@ -1,0 +1,4 @@
+data/data-processed-공시가격_㎡-0.2.csv filter=lfs diff=lfs merge=lfs -text
+data/data-processed-공시가격_㎡-0.25.csv filter=lfs diff=lfs merge=lfs -text
+data/data-processed-공시가격-0.2.csv filter=lfs diff=lfs merge=lfs -text
+data/data-processed-공시가격-0.25.csv filter=lfs diff=lfs merge=lfs -text
