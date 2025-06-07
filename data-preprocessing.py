@@ -12,11 +12,11 @@ df = df.dropna()
 # calculate the price per square meter
 df["공시가격_㎡"] = df["공시가격"] / df["전용면적"]
 
-# remove outliers using IQR
-Q1 = df["공시가격_㎡"].quantile(0.25)
-Q3 = df["공시가격_㎡"].quantile(0.75)
-IQR = Q3 - Q1
-df = df[(df["공시가격_㎡"] >= Q1 - 1.5 * IQR) & (df["공시가격_㎡"] <= Q3 + 1.5 * IQR)]
+# # remove outliers using IQR
+# Q1 = df["공시가격_㎡"].quantile(0.25)
+# Q3 = df["공시가격_㎡"].quantile(0.75)
+# IQR = Q3 - Q1
+# df = df[(df["공시가격_㎡"] >= Q1 - 1.5 * IQR) & (df["공시가격_㎡"] <= Q3 + 1.5 * IQR)]
 
 # save the cleaned data
-df.to_csv("data/data-processed-공시가격_㎡-v2.csv", index=False)
+df.to_csv("data/data-processed-total.csv", index=False)

@@ -1,9 +1,16 @@
 # Created by https://www.toptal.com/developers/gitignore/api/python
 # Edit at https://www.toptal.com/developers/gitignore?templates=python
 
+.DS_Store
+
 # Data files
 국토교통부_*
 data-original.csv
+data-processed-total.csv
+data-processed-공시가격_㎡-0.2.csv
+data-processed-공시가격_㎡-0.25.csv
+data-processed-공시가격-0.2.csv
+data-processed-공시가격-0.25.csv
 
 ### Python ###
 # Byte-compiled / optimized / DLL files
