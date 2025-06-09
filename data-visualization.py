@@ -46,54 +46,60 @@ def plot_qq_for_column(data, city, column):
 
 df = pd.read_csv("data/data-processed-total.csv")
 
-# mean and std save to csv
-mean_std_df = pd.DataFrame()
-mean_std_df["전국"] = [round(df["공시가격_㎡"].mean(), -4), round(df["공시가격_㎡"].std(), -4)]
-mean_std_df["수도권"] = [round(df[(df["시도"] == "서울특별시") | (df["시도"] == "경기도") | (df["시도"] == "인천광역시")]["공시가격_㎡"].mean(), -4), round(df[(df["시도"] == "서울특별시") | (df["시도"] == "경기도") | (df["시도"] == "인천광역시")]["공시가격_㎡"].std(), -4)]
-mean_std_df["비수도권"] = [round(df[(df["시도"] != "서울특별시") & (df["시도"] != "경기도") & (df["시도"] != "인천광역시")]["공시가격_㎡"].mean(), -4), round(df[(df["시도"] != "서울특별시") & (df["시도"] != "경기도") & (df["시도"] != "인천광역시")]["공시가격_㎡"].std(), -4)]
+# # mean and std save to csv
+# mean_std_df = pd.DataFrame()
+# mean_std_df["전국"] = [round(df["공시가격_㎡"].mean(), -4), round(df["공시가격_㎡"].std(), -4)]
+# mean_std_df["수도권"] = [round(df[(df["시도"] == "서울특별시") | (df["시도"] == "경기도") | (df["시도"] == "인천광역시")]["공시가격_㎡"].mean(), -4), round(df[(df["시도"] == "서울특별시") | (df["시도"] == "경기도") | (df["시도"] == "인천광역시")]["공시가격_㎡"].std(), -4)]
+# mean_std_df["비수도권"] = [round(df[(df["시도"] != "서울특별시") & (df["시도"] != "경기도") & (df["시도"] != "인천광역시")]["공시가격_㎡"].mean(), -4), round(df[(df["시도"] != "서울특별시") & (df["시도"] != "경기도") & (df["시도"] != "인천광역시")]["공시가격_㎡"].std(), -4)]
 
-for city in df["시도"].unique():
-    mean_std_df[city] = [round(df[df["시도"] == city]["공시가격_㎡"].mean(), -4), round(df[df["시도"] == city]["공시가격_㎡"].std(), -4)]
+# for city in df["시도"].unique():
+#     mean_std_df[city] = [round(df[df["시도"] == city]["공시가격_㎡"].mean(), -4), round(df[df["시도"] == city]["공시가격_㎡"].std(), -4)]
 
-mean_std_df.to_csv("data/mean-std-original.csv", index=False)
+# mean_std_df.to_csv("data/mean-std-original.csv", index=False)
 
-# log transform
-df["공시가격_㎡"] = np.log(df["공시가격_㎡"])
-log_mean_std_df = pd.DataFrame()
-log_mean_std_df["전국"] = [round(df["공시가격_㎡"].mean(), 2), round(df["공시가격_㎡"].std(), 2)]
-log_mean_std_df["수도권"] = [round(df[(df["시도"] == "서울특별시") | (df["시도"] == "경기도") | (df["시도"] == "인천광역시")]["공시가격_㎡"].mean(), 2), round(df[(df["시도"] == "서울특별시") | (df["시도"] == "경기도") | (df["시도"] == "인천광역시")]["공시가격_㎡"].std(), 2)]
-log_mean_std_df["비수도권"] = [round(df[(df["시도"] != "서울특별시") & (df["시도"] != "경기도") & (df["시도"] != "인천광역시")]["공시가격_㎡"].mean(), 2), round(df[(df["시도"] != "서울특별시") & (df["시도"] != "경기도") & (df["시도"] != "인천광역시")]["공시가격_㎡"].std(), 2)]
-for city in df["시도"].unique():
-    log_mean_std_df[city] = [round(df[df["시도"] == city]["공시가격_㎡"].mean(), 2), round(df[df["시도"] == city]["공시가격_㎡"].std(), 2)]
-log_mean_std_df.to_csv("data/mean-std-log.csv", index=False)
+# # log transform
+# df["공시가격_㎡"] = np.log(df["공시가격_㎡"])
+# log_mean_std_df = pd.DataFrame()
+# log_mean_std_df["전국"] = [round(df["공시가격_㎡"].mean(), 2), round(df["공시가격_㎡"].std(), 2)]
+# log_mean_std_df["수도권"] = [round(df[(df["시도"] == "서울특별시") | (df["시도"] == "경기도") | (df["시도"] == "인천광역시")]["공시가격_㎡"].mean(), 2), round(df[(df["시도"] == "서울특별시") | (df["시도"] == "경기도") | (df["시도"] == "인천광역시")]["공시가격_㎡"].std(), 2)]
+# log_mean_std_df["비수도권"] = [round(df[(df["시도"] != "서울특별시") & (df["시도"] != "경기도") & (df["시도"] != "인천광역시")]["공시가격_㎡"].mean(), 2), round(df[(df["시도"] != "서울특별시") & (df["시도"] != "경기도") & (df["시도"] != "인천광역시")]["공시가격_㎡"].std(), 2)]
+# for city in df["시도"].unique():
+#     log_mean_std_df[city] = [round(df[df["시도"] == city]["공시가격_㎡"].mean(), 2), round(df[df["시도"] == city]["공시가격_㎡"].std(), 2)]
+# log_mean_std_df.to_csv("data/mean-std-log.csv", index=False)
 
 # for city in df["시도"].unique():
 #     plot_original_vs_log(df[df["시도"] == city], city, "공시가격_㎡")
 #     plot_qq_for_column(df[df["시도"] == city], city, "공시가격_㎡")
 
-# df1 = df[(df["시도"] == "서울특별시") | (df["시도"] == "경기도") | (df["시도"] == "인천광역시")]
-# df2 = df[(df["시도"] != "서울특별시") & (df["시도"] != "경기도") & (df["시도"] != "인천광역시")]
+df1 = df[(df["시도"] == "서울특별시") | (df["시도"] == "경기도") | (df["시도"] == "인천광역시")]
+df2 = df[(df["시도"] != "서울특별시") & (df["시도"] != "경기도") & (df["시도"] != "인천광역시")]
 
-# # draw dist plots in one figure
-# plt.figure(figsize=(15, 6))
+# match the sample size
+sample_size = min(len(df1), len(df2))
+df1 = df1.sample(n=sample_size)
+df2 = df2.sample(n=sample_size)
 
-# plt.subplot(1, 2, 1)
+# draw dist plots of original in one figure
+plt.figure(figsize=(15, 6))
 
-# sns.histplot(df1["공시가격_㎡"], kde=True, color='teal', edgecolor='black', label="수도권")
-# sns.histplot(df2["공시가격_㎡"], kde=True, color='orange', edgecolor='black', label="비수도권")
-# plt.title("Distribution of 공시가격_㎡")
-# plt.xlabel("공시가격_㎡")
-# plt.ylabel("Frequency")
-# plt.legend()
+plt.subplot(1, 2, 1)
 
-# plt.subplot(1, 2, 2)
-# sns.histplot(np.log(df1["공시가격_㎡"]), kde=True, color='teal', edgecolor='black', label="수도권")
-# sns.histplot(np.log(df2["공시가격_㎡"]), kde=True, color='orange', edgecolor='black', label="비수도권")
-# plt.title("Distribution of Log 공시가격_㎡")
-# plt.xlabel("Log 공시가격_㎡")
-# plt.ylabel("Frequency")
-# plt.legend()
+sns.histplot(df1["공시가격_㎡"], kde=True, color='teal', edgecolor='black', label="수도권", stat="density")
+sns.histplot(df2["공시가격_㎡"], kde=True, color='orange', edgecolor='black', label="비수도권", stat="density")
+plt.title("Distribution of 공시가격_㎡")
+plt.xlabel("공시가격_㎡")
+plt.ylabel("Density")
+plt.legend()
 
-# plt.tight_layout()
+# Normalize
+plt.subplot(1, 2, 2)
+sns.histplot(np.log(df1["공시가격_㎡"]), kde=True, color='teal', edgecolor='black', label="수도권", stat="density")
+sns.histplot(np.log(df2["공시가격_㎡"]), kde=True, color='orange', edgecolor='black', label="비수도권", stat="density")
+plt.title("Distribution of Log 공시가격_㎡")
+plt.xlabel("Log 공시가격_㎡")
+plt.ylabel("Density")
+plt.legend()
+
+plt.tight_layout()
 # plt.savefig("data/dist-total.png")
-# # plt.show()
+plt.show()
